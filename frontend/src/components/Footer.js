@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -22,7 +21,7 @@ const Footer = () => {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {['Quem Somos', 'Política de Privacidade', 'Termos de Uso'].map((item) => (
                 <li key={item} style={{ marginBottom: '0.35rem' }}>
-                  <a href="#" style={{ fontSize: '0.82rem' }}>{item}</a>
+                  <p href="#" style={{ fontSize: '0.82rem' }}>{item}</p>
                 </li>
               ))}
             </ul>
