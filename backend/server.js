@@ -55,6 +55,6 @@ app.listen(PORT, () =>
 );
 
 // Utilizado para upload de imagens dos produtos
-const uploadRoutes = require('./routes/uploadRoutes');
+const uploadRoutes = import('./routes/uploadRoutes');
 app.use('/api/upload', uploadRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

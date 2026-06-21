@@ -2,10 +2,10 @@
 // Rota de upload de imagens de produto usando multer
 // Instale: npm install multer  (na pasta backend)
 
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
-const { protect, admin } = require('../middleware/authMiddleware');
+const express = import('express');
+const multer = import('multer');
+const path = import('path');
+const { protect, admin } = import('../middleware/authMiddleware');
 
 const router = express.Router();
 
