@@ -1,6 +1,10 @@
-# ShopEasy — E-commerce Full Stack
+# OrbStore — E-commerce Full Stack
 
-Aplicação completa de comércio eletrônico desenvolvida com **React**, **Redux Toolkit**, **Node.js**, **Express** e **MongoDB**.
+Este projeto consiste em uma aplicação completa de comércio eletrônico desenvolvida utilizando a arquitetura Full Stack. A plataforma permite que usuários realizem cadastro, autenticação, visualização de produtos, gerenciamento de carrinho de compras e realização de pedidos.
+
+Além das funcionalidades voltadas para os clientes, o sistema também possui recursos administrativos para gerenciamento de produtos, usuários e pedidos.
+
+O objetivo do projeto é demonstrar a integração entre Frontend, Backend e Banco de Dados, aplicando conceitos modernos de desenvolvimento web.
 
 ## 📁 Estrutura do Projeto
 
@@ -192,3 +196,14 @@ As imagens de exemplo são SVGs simples servidos pela rota estática `/images` d
 3. Adicione produtos ao carrinho e finalize a compra (endereço → pagamento → confirmação).
 4. Simule o pagamento na tela do pedido.
 5. Faça login como administrador (`admin@example.com`) e acesse o painel `/admin/dashboard`, gerencie produtos, usuários e pedidos.
+
+---
+
+## 👨‍💻 Autores
+* Beatriz de Andrade Leite 
+* Edgar Guimarães de Carvalho 
+* Matheus Machado Sprengel 
+* Sophia Rosa da Silva Machado 
+* Théo Vinícius Garcia Tonche
+
+Projeto desenvolvido para fins acadêmicos e aprendizado de desenvolvimento Full Stack utilizando React, Node.js, Express e MongoDB.
