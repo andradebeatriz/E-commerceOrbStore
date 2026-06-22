@@ -82,7 +82,7 @@ const DashboardScreen = () => {
           <Message variant="danger">{error}</Message>
         ) : (
           <Row className="g-3 my-2">
-            {cards.map((c) => (
+            {cards && cards.length > 0 && cards.map((c) => (
               <Col key={c.label} sm={6} xl={3}>
                 <Card className="text-center p-3">
                   <Card.Body>

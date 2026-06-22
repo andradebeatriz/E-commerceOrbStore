@@ -94,7 +94,7 @@ const ProductListScreen = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product) => (
+                {products && products.length > 0 && products.map((product) => (
                   <tr key={product._id}>
                     <td style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
                       {product._id}

@@ -137,7 +137,7 @@ const ProfileScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {orders && orders.length > 0 && orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{new Date(order.createdAt).toLocaleDateString('pt-BR')}</td>

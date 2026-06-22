@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
-import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 import { clearCartItems } from '../actions/cartActions';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -14,8 +14,7 @@ const PlaceOrderScreen = () => {
 
   const cart = useSelector((state) => state.cart);
 
-  // Cálculos de preços
-  const itemsPrice = cart.cartItems
+  const itemsPrice = cart.cartItems && Array.isArray(cart.cartItems)
     ? cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
     : 0;
   const shippingPrice = itemsPrice > 500 ? 0 : 30;
@@ -28,12 +27,10 @@ const PlaceOrderScreen = () => {
   useEffect(() => {
     if (success) {
       dispatch(clearCartItems());
-      // Recarrega a página de produtos quando voltar
-      dispatch({ type: 'PRODUCT_LIST_RESET' });
       navigate(`/order/${order._id}`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
-  }, [success, navigate, dispatch ,order]);
+  }, [success, navigate, dispatch, order]);
 
   const placeOrderHandler = () => {
     dispatch(
@@ -56,40 +53,43 @@ const PlaceOrderScreen = () => {
         <Col md={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>Endereço de Entrega</h2>
+              <h2>Endereco de Entrega</h2>
               <p>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                - {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}
+                {cart.shippingAddress && cart.shippingAddress.address},{' '}
+                {cart.shippingAddress && cart.shippingAddress.city} -{' '}
+                {cart.shippingAddress && cart.shippingAddress.postalCode},{' '}
+                {cart.shippingAddress && cart.shippingAddress.country}
               </p>
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Método de Pagamento</h2>
+              <h2>Metodo de Pagamento</h2>
               <p>{cart.paymentMethod}</p>
             </ListGroup.Item>
 
             <ListGroup.Item>
               <h2>Itens do Pedido</h2>
-              {cart.cartItems && cart.cartItems.length === 0 ? (
-                <Message>Seu carrinho está vazio</Message>
+              {cart.cartItems && Array.isArray(cart.cartItems) && cart.cartItems.length === 0 ? (
+                <Message>Seu carrinho esta vazio</Message>
               ) : (
                 <ListGroup variant="flush">
-                  {cart.cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
-                      <Row className="align-items-center">
-                        <Col md={1}>
-                          <Image src={item.image} alt={item.name} fluid rounded />
-                        </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>{item.name}</Link>
-                        </Col>
-                        <Col md={4}>
-                          {item.qty} x R$ {item.price.toFixed(2)} = R${' '}
-                          {(item.qty * item.price).toFixed(2)}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  ))}
+                  {cart.cartItems && cart.cartItems.length > 0 &&
+                    cart.cartItems.map((item, index) => (
+                      <ListGroup.Item key={index}>
+                        <Row className="align-items-center">
+                          <Col md={1}>
+                            <Image src={item.image} alt={item.name} fluid rounded />
+                          </Col>
+                          <Col>
+                            <Link to={`/product/${item.product}`}>{item.name}</Link>
+                          </Col>
+                          <Col md={4}>
+                            {item.qty} x R$ {item.price.toFixed(2)} = R${' '}
+                            {(item.qty * item.price).toFixed(2)}
+                          </Col>
+                        </Row>
+                      </ListGroup.Item>
+                    ))}
                 </ListGroup>
               )}
             </ListGroup.Item>
@@ -137,7 +137,7 @@ const PlaceOrderScreen = () => {
                 <Button
                   type="button"
                   className="w-100"
-                  disabled={cart.cartItems && cart.cartItems.length === 0}
+                  disabled={!cart.cartItems || cart.cartItems.length === 0}
                   onClick={placeOrderHandler}
                 >
                   Confirmar Pedido

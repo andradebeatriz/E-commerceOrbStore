@@ -64,7 +64,7 @@ const CartScreen = () => {
               borderRadius: 'var(--r-xl)',
               overflow: 'hidden'
             }}>
-              {cartItems.map((item, index) => (
+              {cartItems && cartItems.length > 0 && cartItems.map((item, index) => (
                 <div
                   key={item.product}
                   style={{

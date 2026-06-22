@@ -52,7 +52,7 @@ const OrderListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {orders && orders.length > 0 && orders.map((order) => (
                 <tr key={order._id}>
                   <td style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
                     {order._id}

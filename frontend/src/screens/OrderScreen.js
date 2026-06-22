@@ -163,7 +163,7 @@ const OrderScreen = () => {
               <Message>O pedido está vazio</Message>
             ) : (
               <div className="d-flex flex-column gap-2">
-                {order.orderItems.map((item, index) => (
+                {order.orderItems && order.orderItems.length > 0 && order.orderItems.map((item, index) => (
                   <div
                     key={index}
                     style={{

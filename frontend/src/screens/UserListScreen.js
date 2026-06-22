@@ -59,7 +59,7 @@ const UserListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
+              {users && users.length > 0 && users.map((user) => (
                 <tr key={user._id}>
                   <td style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
                     {user._id}
