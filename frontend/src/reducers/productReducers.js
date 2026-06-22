@@ -23,23 +23,16 @@ import {
 } from '../constants/productConstants';
 
 // Reducer da listagem de produtos (página inicial)
-export const productListReducer = (
-  state = { products: [], loading: false },
-  action
-) => {
+export const productListReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
-      return { ...state, loading: true, products: [] };
+      return { loading: true, products: [] };
     case PRODUCT_LIST_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        products: action.payload.products,
-        pages: action.payload.pages,
-        page: action.payload.page,
-      };
+      return { loading: false, products: action.payload };
     case PRODUCT_LIST_FAIL:
-      return { ...state, loading: false, error: action.payload };
+      return { loading: false, error: action.payload };
+    case 'PRODUCT_LIST_RESET':
+      return { products: [] };
     default:
       return state;
   }

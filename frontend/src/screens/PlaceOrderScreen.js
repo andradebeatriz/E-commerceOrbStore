@@ -28,11 +28,12 @@ const PlaceOrderScreen = () => {
   useEffect(() => {
     if (success) {
       dispatch(clearCartItems());
+      // Recarrega a página de produtos quando voltar
+      dispatch({ type: 'PRODUCT_LIST_RESET' });
       navigate(`/order/${order._id}`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [success, navigate]);
+  }, [success, navigate, dispatch]);
 
   const placeOrderHandler = () => {
     dispatch(

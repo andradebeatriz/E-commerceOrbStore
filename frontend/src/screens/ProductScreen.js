@@ -155,12 +155,12 @@ const ProductScreen = () => {
             <Col md={7}>
               <h2 className="mb-3">Avaliações dos Clientes</h2>
 
-              {product.reviews?.length === 0 && (
+              {product.reviews && product.reviews.length === 0 && (
                 <Message variant="info">Nenhuma avaliação ainda. Seja o primeiro!</Message>
               )}
 
               <div className="d-flex flex-column gap-2 mb-4">
-                {product.reviews?.map((review) => (
+                {product.reviews && product.reviews.map((review) => (
                   <div key={review._id} className="review-item">
                     <div className="d-flex justify-content-between mb-1">
                       <span className="review-author">{review.name}</span>
