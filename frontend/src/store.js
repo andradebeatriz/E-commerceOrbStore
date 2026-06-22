@@ -79,11 +79,11 @@ const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
 
 const preloadedState = {
   cart: {
-    cartItems: cartItemsFromStorage,
-    shippingAddress: shippingAddressFromStorage,
-    paymentMethod: paymentMethodFromStorage,
+    cartItems: cartItemsFromStorage || [],
+    shippingAddress: shippingAddressFromStorage || {},
+    paymentMethod: paymentMethodFromStorage || '',
   },
-  userLogin: { userInfo: userInfoFromStorage },
+  userLogin: { userInfo: userInfoFromStorage || null },
 };
 
 const store = configureStore({

@@ -31,14 +31,14 @@ const CartScreen = () => {
     navigate('/login?redirect=/shipping');
   };
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.qty * item.price, 0);
-  const totalItems = cartItems.reduce((acc, item) => acc + item.qty, 0);
+  const subtotal = cartItems ? cartItems.reduce((acc, item) => acc + item.qty * item.price, 0) : 0;
+  const totalItems = cartItems ? cartItems.reduce((acc, item) => acc + item.qty, 0) : 0;
 
   return (
     <>
       <h1 className="mb-4">Seu Carrinho</h1>
 
-      {cartItems.length === 0 ? (
+      {cartItems && cartItems.length === 0 ? (
         <div style={{
           background: 'var(--bg-card)',
           border: '1px solid var(--border-card)',
@@ -69,7 +69,7 @@ const CartScreen = () => {
                   key={item.product}
                   style={{
                     padding: '1.25rem 1.5rem',
-                    borderBottom: index < cartItems.length - 1 ? '1px solid var(--border)' : 'none'
+                    borderBottom: cartItems && index < cartItems.length - 1 ? '1px solid var(--border)' : 'none'
                   }}
                 >
                   <Row className="align-items-center g-3">
@@ -159,7 +159,7 @@ const CartScreen = () => {
               <Button
                 variant="primary"
                 className="w-100 py-2"
-                disabled={cartItems.length === 0}
+                disabled={cartItems && cartItems.length === 0}
                 onClick={checkoutHandler}
                 style={{ fontSize: '1rem' }}
               >

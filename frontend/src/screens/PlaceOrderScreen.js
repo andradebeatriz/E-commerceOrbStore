@@ -15,10 +15,9 @@ const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart);
 
   // Cálculos de preços
-  const itemsPrice = cart.cartItems.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0
-  );
+  const itemsPrice = cart.cartItems
+    ? cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    : 0;
   const shippingPrice = itemsPrice > 500 ? 0 : 30;
   const taxPrice = Number((0.15 * itemsPrice).toFixed(2));
   const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2);
@@ -70,7 +69,7 @@ const PlaceOrderScreen = () => {
 
             <ListGroup.Item>
               <h2>Itens do Pedido</h2>
-              {cart.cartItems.length === 0 ? (
+              {cart.cartItems && cart.cartItems.length === 0 ? (
                 <Message>Seu carrinho está vazio</Message>
               ) : (
                 <ListGroup variant="flush">
@@ -137,7 +136,7 @@ const PlaceOrderScreen = () => {
                 <Button
                   type="button"
                   className="w-100"
-                  disabled={cart.cartItems.length === 0}
+                  disabled={cart.cartItems && cart.cartItems.length === 0}
                   onClick={placeOrderHandler}
                 >
                   Confirmar Pedido

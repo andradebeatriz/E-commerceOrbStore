@@ -58,10 +58,9 @@ const OrderScreen = () => {
   // Guard: pedido sem usuário vinculado (usuário deletado)
   const orderUser = order.user || null;
 
-  const itemsPrice = order.orderItems.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0
-  );
+  const itemsPrice = order.orderItems
+    ? order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    : 0;
 
   /* ---- estilos inline reutilizados ---- */
   const sectionStyle = {
@@ -160,7 +159,7 @@ const OrderScreen = () => {
               Itens do Pedido
             </h2>
 
-            {order.orderItems.length === 0 ? (
+            {order.orderItems && order.orderItems.length === 0 ? (
               <Message>O pedido está vazio</Message>
             ) : (
               <div className="d-flex flex-column gap-2">

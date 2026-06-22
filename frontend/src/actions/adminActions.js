@@ -1,4 +1,5 @@
 import axios from 'axios';
+import API_URL from '../config/api';
 import {
   ADMIN_SUMMARY_REQUEST,
   ADMIN_SUMMARY_SUCCESS,
@@ -20,7 +21,7 @@ export const getDashboardSummary = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get('/api/admin/summary', config);
+    const { data } = await axios.get(`${API_URL}/api/admin/summary`, config);
 
     dispatch({ type: ADMIN_SUMMARY_SUCCESS, payload: data });
   } catch (error) {

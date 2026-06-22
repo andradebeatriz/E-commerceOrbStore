@@ -42,7 +42,7 @@ const HomeScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          {products.length === 0 ? (
+          {products && products.length === 0 ? (
             <Message variant="info">
               Nenhum produto encontrado para "{keyword}".
             </Message>

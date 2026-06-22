@@ -32,7 +32,7 @@ const Header = () => {
               <Nav.Link as={Link} to="/cart" className="d-flex align-items-center gap-1">
                 <i className="fas fa-shopping-cart"></i>
                 <span>Carrinho</span>
-                {cartItems.length > 0 && (
+                {cartItems && cartItems.length > 0 && (
                   <span className="badge ms-1">
                     {cartItems.reduce((acc, item) => acc + item.qty, 0)}
                   </span>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import API_URL from '../config/api';
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
@@ -9,7 +10,7 @@ import {
 
 // Adiciona um produto ao carrinho e persiste no localStorage
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`);
+  const { data } = await axios.get(`${API_URL}/api/products/${id}`);
 
   dispatch({
     type: CART_ADD_ITEM,

@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import API_URL from '../config/api';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listProductDetails, updateProduct } from '../actions/productActions';
@@ -74,7 +75,7 @@ const ProductEditScreen = () => {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.post('/api/upload', formData, config);
+      const { data } = await axios.post(`${API_URL}/api/upload`, formData, config);
       setImage(data.image);   // caminho salvo no banco
     } catch (err) {
       setUploadError('Erro ao fazer upload da imagem. Verifique o tamanho (máx 5 MB).');
