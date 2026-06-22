@@ -29,7 +29,6 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'https://e-commerce-orb-store.vercel.app',
-    'https://e-commerceorbstore.vercel.app',
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
