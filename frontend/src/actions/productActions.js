@@ -30,7 +30,7 @@ export const listProducts = () => async (dispatch) => {
 
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
-      payload: data.products,
+      payload: data,
     });
   } catch (error) {
     dispatch({
