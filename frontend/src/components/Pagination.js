@@ -7,6 +7,8 @@ const Pagination = ({ pages, page, isAdmin = false, keyword = '' }) => {
 
   if (!pages || pages <= 1) return null;
 
+  const currentPage = Number(page);
+
   const goToPage = (pageNumber) => {
     if (isAdmin) {
       navigate(`/admin/productlist/${pageNumber}`);
@@ -22,7 +24,7 @@ const Pagination = ({ pages, page, isAdmin = false, keyword = '' }) => {
       {[...Array(pages).keys()].map((x) => (
         <BSPagination.Item
           key={x + 1}
-          active={x + 1 === page}
+          active={x + 1 === currentPage}
           onClick={() => goToPage(x + 1)}
         >
           {x + 1}
