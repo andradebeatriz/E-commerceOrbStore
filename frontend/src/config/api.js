@@ -1,5 +1,3 @@
-const API_URL = process.env.NODE_ENV === 'production'
-  ? 'https://e-commerceorbstore.onrender.com'
-  : 'http://localhost:5000';
+const API_URL = 'https://e-commerceorbstore.onrender.com';
 
 export default API_URL;
