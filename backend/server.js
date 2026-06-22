@@ -11,6 +11,7 @@ import userRoutes from './routes/userRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 dotenv.config();
 
@@ -32,11 +33,13 @@ app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Serve arquivos estáticos (imagens dos produtos)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/images', express.static(path.join(__dirname, '/uploads/images')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); 
 
 app.get('/', (req, res) => {
   res.send('API do E-commerce está em execução...');
@@ -54,7 +57,3 @@ app.listen(PORT, () =>
   )
 );
 
-// Utilizado para upload de imagens dos produtos
-const uploadRoutes = import('./routes/uploadRoutes');
-app.use('/api/upload', uploadRoutes);
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

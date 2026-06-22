@@ -1,18 +1,14 @@
-// backend/routes/uploadRoutes.js
-// Rota de upload de imagens de produto usando multer
-// Instale: npm install multer  (na pasta backend)
-
-const express = import('express');
-const multer = import('multer');
-const path = import('path');
-const { protect, admin } = import('../middleware/authMiddleware');
+import express from 'express';
+import multer from 'multer';
+import path from 'path';
+import { protect, admin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 /* ---- Configuração do multer ---- */
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, 'uploads/'); // pasta uploads/ na raiz do backend
+    cb(null, 'uploads/');
   },
   filename(req, file, cb) {
     // ex: product-1718000000000.jpg
@@ -34,7 +30,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB
+  limits: { fileSize: 5 * 1024 * 1024 },
 });
 
 /* ---- Rota POST /api/upload ---- */
@@ -46,4 +42,4 @@ router.post('/', protect, admin, upload.single('image'), (req, res) => {
   res.json({ image: `/uploads/${req.file.filename}` });
 });
 
-module.exports = router;
+export default router;
